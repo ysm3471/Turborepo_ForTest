@@ -17,7 +17,7 @@ jobs:
       - name: Prepare Yarn 4
         run: corepack enable
       - run: corepack prepare yarn@4.9.2 --activate
-      - run: yarn install
+      - run: yarn install --immutable
       - run: npm test
 
   deploy:
@@ -33,7 +33,7 @@ jobs:
       - name: Prepare Yarn 4
         run: corepack enable
       - run: corepack prepare yarn@4.9.2 --activate
-      - run: yarn install
+      - run: yarn install --immutable
       - run: npm install --global vercel
       - run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
