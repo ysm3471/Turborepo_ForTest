@@ -1,0 +1,12 @@
+.button {
+  flex:1;
+  padding:8px 0px;
+  font-size:20px;
+  background:none;
+  border:1px solid #333;
+  border-radius:4px;
+  cursor: pointer;
+}
+.button:hover {
+  background:rgba(255,255,0,0.5);
+}

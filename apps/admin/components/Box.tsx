@@ -1,0 +1,38 @@
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import styled from './Box.module.css'
+import Button from './Button'
+import { getDatabase, onValue, ref, query, limitToLast, orderByChild, equalTo } from 'firebase/database'
+import { app } from '@/Firebase/FirebaseClient';
+
+const numArr = [1,2,3,4,5]  // 버튼 리스트
+
+export default function Box() {
+  const db = getDatabase(app);  // firebase 연결
+  const [seleted,setSelected] = useState(0) // 클릭한 버튼을 저장하는 state
+  const [num,setNum] = useState(0) // 클릭한 버튼의 클릭 횟수를 저장하는 state
+
+  function handleClick(data:number) {
+    const dataRef = query(ref(db, `user-posts/numCnt/${data}`))   // 클릭한 숫자의 클릭 횟수를 가져옴
+    onValue(dataRef, (snapshot) => {
+      setNum(snapshot.val() ?? 0)
+      setSelected(data)
+    });
+  }
+
+  const buttons = numArr.map((aa,idx) => {
+    return <Button num={aa} key={idx} handleClick={() => {handleClick(aa)}}/>
+  })
+  return (
+    <div className={styled.box}>
+      <h2 className={styled.title}><span>Show</span> History</h2>
+      <div className={styled.buttonWrap}>
+        {seleted !== 0 && <h3>'{seleted}' 은(는) {num}번 조회한 버튼입니다.</h3>}
+        <div className={styled.buttonBox}>
+        {buttons}
+        </div>
+      </div>
+    </div>
+  )
+}
