@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
+      - run: npm install
       - run: npm test
 
   deploy:
@@ -25,6 +26,7 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
+      - run: npm install
       - run: npm run build
       - run: npm install --global vercel
       - run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
