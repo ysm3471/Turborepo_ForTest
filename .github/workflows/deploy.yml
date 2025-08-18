@@ -8,6 +8,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      YARN_ENABLE_IMMUTABLE_INSTALLS: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,6 +24,8 @@ jobs:
 
   deploy:
     needs: test
+    env:
+      YARN_ENABLE_IMMUTABLE_INSTALLS: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
