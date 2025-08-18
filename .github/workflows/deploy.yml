@@ -41,6 +41,8 @@ jobs:
       - run: npm install --global vercel 
       - name: Link Vercel Project
         run: vercel link --yes --project turborepo-for-test-main --token ${{ secrets.VERCEL_TOKEN }} 
+      - run: vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+      - run: vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
       - run: vercel deploy --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
 
   deploy-admin:
@@ -62,4 +64,6 @@ jobs:
       - run: npm install --global vercel
       - name: Link Vercel Project
         run: vercel link --yes --project turborepo-for-test-admin --token ${{ secrets.VERCEL_TOKEN }} 
+      - run: vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+      - run: vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
       - run: vercel deploy --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
