@@ -14,6 +14,9 @@ jobs:
         with:
           node-version: 20
       - run: npm install
+      - name: Prepare Yarn 4
+        run: corepack enable
+      - run: corepack prepare yarn@4.9.2 --activate
       - run: npm test
 
   deploy:
@@ -26,6 +29,9 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
+      - name: Prepare Yarn 4
+        run: corepack enable
+      - run: corepack prepare yarn@4.9.2 --activate
       - run: npm install --global vercel
       - run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
