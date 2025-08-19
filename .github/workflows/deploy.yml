@@ -1,0 +1,83 @@
+name: CI/CD with Vercel
+
+on:
+  push:
+  pull_request: 
+    branches: [dev,main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      YARN_ENABLE_IMMUTABLE_INSTALLS: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Prepare Yarn 4
+        run: corepack enable
+      - run: corepack prepare yarn@4.9.2 --activate
+      - run: yarn install
+      - run: npm test
+
+  deploy-main:
+    needs: test
+    runs-on: ubuntu-latest
+    env:
+      YARN_ENABLE_IMMUTABLE_INSTALLS: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Set project id
+        run: |
+          if [ "${GITHUB_REF}" == "refs/heads/main" ]; then
+            echo "PROJECT_ID=turborepo-for-test-main-prod" >> $GITHUB_ENV
+          else
+            echo "PROJECT_ID=turborepo-for-test-main" >> $GITHUB_ENV
+          fi
+      - run: npm install
+      - name: Prepare Yarn 4
+        run: corepack enable
+      - run: corepack prepare yarn@4.9.2 --activate
+      - run: yarn install
+      - run: npm run build --workspace=main
+      - run: npm install --global vercel 
+      - name: Link Vercel Project
+        run: vercel link --yes --project $PROJECT_ID --token ${{ secrets.VERCEL_TOKEN }} 
+      - run: vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+      - run: vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
+      - run: vercel deploy --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
+
+  deploy-admin:
+    needs: test
+    runs-on: ubuntu-latest
+    env:
+      YARN_ENABLE_IMMUTABLE_INSTALLS: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Set project id
+        run: |
+          if [ "${GITHUB_REF}" == "refs/heads/main" ]; then
+            echo "PROJECT_ID=turborepo-for-test-admin-prod" >> $GITHUB_ENV
+          else
+            echo "PROJECT_ID=turborepo-for-test-admin" >> $GITHUB_ENV
+          fi
+      - run: npm install
+      - name: Prepare Yarn 4
+        run: corepack enable
+      - run: corepack prepare yarn@4.9.2 --activate
+      - run: yarn install
+      - run: npm run build --workspace=admin
+      - run: npm install --global vercel
+      - name: Link Vercel Project
+        run: vercel link --yes --project $PROJECT_ID --token ${{ secrets.VERCEL_TOKEN }} 
+      - run: vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+      - run: vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
+      - run: vercel deploy --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
