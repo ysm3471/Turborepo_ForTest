@@ -18,7 +18,7 @@ export default function Box() {
   }
 
   const buttons = numArr.map((aa,idx) => {
-    return <Button num={aa} key={idx} handleClick={() => {handleClick(aa)}}/>
+    return <Button num={aa} seleted={num} key={idx} handleClick={() => {handleClick(aa)}}/>
   })
   return (
     <div className={styled.box}>
