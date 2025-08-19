@@ -4,11 +4,12 @@ import styled from './Button.module.css'
 interface props {
   num:number
   handleClick:() => void
+  seleted:number
 }
 
-export default function Button({num,handleClick}:props) {
+export default function Button({seleted,num,handleClick}:props) {
   return (
-    <button className={styled.button} onClick={handleClick}>  
+    <button className={seleted === num ? `${styled.button} ${styled.seleted}` : `${styled.button}`} onClick={handleClick}>  
       {num}
     </button> 
   )
