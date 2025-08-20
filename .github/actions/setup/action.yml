@@ -2,10 +2,13 @@ name: "Setup Node & Yarn"
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-node@v4
+    - name: Setup Node & Yarn
+      uses: actions/setup-node@v4
       with:
         node-version: 20
-    - name: Prepare Yarn 4
-      run: corepack enable
-    - run: corepack prepare yarn@4.9.2 --activate
-    - run: yarn install 
+
+    - name: Prepare Yarn 4 & Install dependencies
+      run: |
+        corepack enable
+        corepack prepare yarn@4.9.2 --activate
+        yarn install
