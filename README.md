@@ -72,7 +72,10 @@ describe('<Box />', () => {
 }
 ```
 Jest의 mock 기능을 사용하여 더미 함수로 테스트를 진행하였습니다. <br>
-UI는 페이지 기능 플로우의 핵심인 클릭 후 사용자 화면에 해당 번호가 표시되는 기능을 확인하였습니다. <br><br>
+UI는 페이지 기능 플로우의 핵심인 클릭 후 사용자 화면에 해당 번호가 표시되는 기능을 확인하였습니다.
+
+<img width="1554" height="763" alt="vercel5" src="https://github.com/user-attachments/assets/e2489aa5-c203-49b4-b519-538e5234ab81" /><br><br>
+
 
 #### 주요 코드 2 - Gihub Actions workflow 파일 구성
 
