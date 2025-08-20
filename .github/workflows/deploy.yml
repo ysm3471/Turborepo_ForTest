@@ -49,7 +49,7 @@ jobs:
             echo "PROJECT_ID=turborepo-for-test-main" >> $GITHUB_ENV
           fi 
       - uses: ./.github/actions/setup
-      - run: yarn build --workspace=main
+      - run: npm run build --workspace=main
       - run: npm install --global vercel 
       - name: Link Vercel Project
         run: vercel link --yes --project $PROJECT_ID --token ${{ secrets.VERCEL_TOKEN }} 
@@ -79,7 +79,7 @@ jobs:
             echo "PROJECT_ID=turborepo-for-test-admin" >> $GITHUB_ENV
           fi 
       - uses: ./.github/actions/setup
-      - run: yarn build --workspace=admin
+      - run: npm run build --workspace=admin
       - run: npm install --global vercel
       - name: Link Vercel Project
         run: vercel link --yes --project $PROJECT_ID --token ${{ secrets.VERCEL_TOKEN }} 
