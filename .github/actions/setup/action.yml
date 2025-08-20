@@ -12,3 +12,4 @@ runs:
         corepack enable
         corepack prepare yarn@4.9.2 --activate
         yarn install
+      shell: bash
