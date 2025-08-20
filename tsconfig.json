@@ -16,5 +16,5 @@
     }
   },
   "include": ["apps/**/*", "packages/**/*"],
-  "exclude": ["apps/*/Firebase/*","apps/*/jest.config.js"]
+  "exclude": ["apps/*/Firebase/*","packages/ui/dist/*.js"]
 }

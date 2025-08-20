@@ -23,12 +23,13 @@
     "paths": {
       "@/*": [
         "./*"
-      ]
+      ], 
+      "@turbotest/ui": ["../../packages/ui"]
     },
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true
-  },
+  },  
   "include": [
     "**/*.ts",
     "**/*.tsx",
