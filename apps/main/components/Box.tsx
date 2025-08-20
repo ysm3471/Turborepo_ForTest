@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import styled from './Box.module.css'
-import Button from './Button'
+import {Button} from "@turbotest/ui" 
 import updateViewCnt from '@/Firebase/post/CntData'
 import writeUserData from '@/Firebase/post/PostData'
 
@@ -18,7 +18,7 @@ export default function Box() {
   }
 
   const buttons = numArr.map((aa,idx) => {
-    return <Button num={aa} seleted={num} key={idx} handleClick={() => {handleClick(aa)}}/>
+    return <Button num={aa} selected={num} key={idx} handleClick={() => {handleClick(aa)}}/>
   })
   return (
     <div className={styled.box}>

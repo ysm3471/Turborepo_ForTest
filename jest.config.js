@@ -8,4 +8,9 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',  // ts, tsx 파일 변환
   },
+  projects: [
+    "<rootDir>/packages/ui",
+    "<rootDir>/apps/main",
+    "<rootDir>/apps/admin"
+  ],
 };
