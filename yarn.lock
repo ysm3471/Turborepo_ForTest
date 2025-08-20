@@ -1887,6 +1887,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@turbotest/ui@workspace:*, @turbotest/ui@workspace:packages/ui":
+  version: 0.0.0-use.local
+  resolution: "@turbotest/ui@workspace:packages/ui"
+  dependencies:
+    "@types/node": "npm:^20"
+    "@types/react": "npm:^19"
+    "@types/react-dom": "npm:^19"
+    next: "npm:15.4.6"
+    react: "npm:19.1.0"
+    react-dom: "npm:19.1.0"
+    typescript: "npm:^5"
+  languageName: unknown
+  linkType: soft
+
 "@tybys/wasm-util@npm:^0.10.0":
   version: 0.10.0
   resolution: "@tybys/wasm-util@npm:0.10.0"
@@ -2209,6 +2223,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "admin@workspace:apps/admin"
   dependencies:
+    "@turbotest/ui": "workspace:*"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
@@ -3986,6 +4001,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "main@workspace:apps/main"
   dependencies:
+    "@turbotest/ui": "workspace:*"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"

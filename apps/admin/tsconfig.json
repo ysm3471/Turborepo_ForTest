@@ -23,6 +23,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@turbotest/ui": [
+        "../../packages/ui"
       ]
     },
     "moduleResolution": "node",
