@@ -6,6 +6,6 @@ runs:
       with:
         node-version: 20
     - name: Prepare Yarn 4
-    - run: corepack enable
+      run: corepack enable
     - run: corepack prepare yarn@4.9.2 --activate
     - run: yarn install 
